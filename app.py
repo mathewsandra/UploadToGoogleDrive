@@ -7,6 +7,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from helpers.jwt_verify import token_required
 from flask_security import Security
+from flask_mail import Mail
 from authCredentials import uploadFile
 import json
 
@@ -45,6 +46,7 @@ def setup_routes(app):
 
 def create_app(name=None):
     app = Flask(name or 'App')
+    app.config['mail'] = Mail(app)
     Swagger(app)
     load_api(app)
     setup_routes(app)
