@@ -6,7 +6,7 @@ import config.config as config
 dialect = config.dialect
 # username = config.username
 username = 'postgres'
-password = ''
+password = 'root'
 if config.password is not None:
     password = config.password
 host = config.host
@@ -23,6 +23,10 @@ class SqlConnection:
 
     def getConnection(self):
         return self.connection
+    
+    def getEngine(self):
+        return self.engine
+
 
     def connectionClose(self):
         self.engine.dispose()

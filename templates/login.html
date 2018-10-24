@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+  <link rel="stylesheet"  href="{{  url_for('static', filename='styles.css') }}?version=51">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+</head>
+<script>
+  function UserAction(form) {
+    //document.write("sandra")
+    alert("test");
+    //window.open('http://127.0.0.1:5000/login?email=sandra@gmail.com&password=sandra12345');
+   /* $.get(
+      "http://127.0.0.1:5000/login?email=sandra@gmail.com&password=sandra12345",
+       function(data) {
+        console.log(data)
+        alert("hello.....");
+        alert("Data: "+data);
+         window.location.replace("http://127.0.0.1:5000/LoginSuccess");
+      }
+    );*/
+    $.post("http://127.0.0.1:5000/login",
+    {
+        email: form.email.value,
+        password: form.password.value
+    },
+    function(data, status){
+        alert("Data: " + data);
+        if (data == "Success")
+        {
+          window.location.replace("http://127.0.0.1:5000/LoginSuccess");
+        }
+        else
+        {
+         window.location.replace("http://127.0.0.1:5000/login1"); 
+        }
+    });
+   /* $.get("demo.asp", function(data){
+        alert("Data: " + data);
+    });*/
+    /*var xhttp = new XMLHttpRequest();
+    var params="orem=ipsum&name=binny";
+    var url="http://127.0.0.1:5000/login";
+    xhttp.onreadystatechange=state_change;
+    xhttp.open("POST", url, true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    /*xhttp.onreadystatechange = function() {alert(this.status);
+         if (this.readyState == 4 && this.status == 200) {
+             document.getElementById("change").innerHTML =
+      this.responseText;
+         }
+    };*/
+    /*xhttp.send(params);
+
+    function state_change() {alert("function called");
+          if (xhttp.readyState == "4") //Request finished and response is ready
+          {
+              if (xhttp.status == "200") {
+                  alert("Success");
+                  //document.write(request.responseText);;
+              } else {
+                alert(xhttp.status);
+              }
+          }
+          else {
+              alert("Problem retrieving data");
+              //console.log(this.responseXML);
+          }
+      }*/
+    
+    // xhttp.send("Your JSON Data Here");
+  } 
+  </script>
+<body>
+
+<div class="container">
+ <div class="jumbotron" > 
+ 
+  <form>
+    <div class="form-group">
+      <label for="usr">Username:</label>
+      <input type="text" class="form-control" id="usr" name="email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="pwd" name="password">
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" name="remember"> Remember me</label>
+    </div>
+    <div id="change">
+    <button type="button" id="login" value="Login" onclick="UserAction(this.form)" class="btn btn-default">Login</button>
+    </div>
+  </form>
+ </div>
+</div>
+</body>
+</html>

@@ -14,5 +14,5 @@ def all_schemas(metadata):
         'db_details': db_details,
         'db': SqlConnection()
     }
-
+    
     return allModels
