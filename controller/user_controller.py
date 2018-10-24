@@ -7,10 +7,7 @@ import json
 from flask import render_template, make_response
 
 logins = Login_model()
-returnobjforsuccess = {}
-returnobjforsuccess['Result'] = 'Success'
-returnobjforsuccess['status'] = 1
-returnobjforsuccess['error'] = ''
+
 
 class User():
     def login(self, email, password):
